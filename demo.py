@@ -48,7 +48,7 @@ def get_args():
 if __name__ == '__main__':
 
     args = get_args()
-    utils.get_device(args)
+    #utils.get_device(args)
     device = torch.device("cuda:%s" % args.gpu_ids[0]
                           if torch.cuda.is_available() and len(args.gpu_ids)>0
                         else "cpu")
@@ -70,10 +70,3 @@ if __name__ == '__main__':
         print('process: %s' % name)
         score_map = model._forward_pass(batch)
         model._save_predictions()
-
-
-
-
-
-
-

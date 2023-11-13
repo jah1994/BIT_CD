@@ -28,7 +28,7 @@ IGNORE = 255
 label_suffix='.png' # jpg for gan dataset, others : png
 
 def load_img_name_list(dataset_path):
-    img_name_list = np.loadtxt(dataset_path, dtype=np.str)
+    img_name_list = np.loadtxt(dataset_path, dtype=np.str_)
     if img_name_list.ndim == 2:
         return img_name_list[:, 0]
     return img_name_list
@@ -117,4 +117,3 @@ class CDDataset(ImageDataset):
         [img, img_B], [label] = self.augm.transform([img, img_B], [label], to_tensor=self.to_tensor)
         # print(label.max())
         return {'name': name, 'A': img, 'B': img_B, 'L': label}
-
