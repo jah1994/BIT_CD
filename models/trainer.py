@@ -294,4 +294,3 @@ class CDTrainer():
             ##########################################
             self._update_val_acc_curve()
             self._update_checkpoints()
-

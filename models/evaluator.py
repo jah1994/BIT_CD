@@ -50,17 +50,19 @@ class CDEvaluator():
         self.is_training = False
         self.batch_id = 0
         self.epoch_id = 0
-        self.checkpoint_dir = args.checkpoint_dir
-        self.vis_dir = args.vis_dir
+        self.checkpoint_dir = args.checkpoint_dir.strip("\r")
+        self.vis_dir = args.vis_dir.strip("\r")
 
         # check and create model dir
         if os.path.exists(self.checkpoint_dir) is False:
-            os.mkdir(self.checkpoint_dir)
+            os.mkdir(self.checkpoint_dir.strip())
         if os.path.exists(self.vis_dir) is False:
-            os.mkdir(self.vis_dir)
+            os.mkdir(self.vis_dir.strip())
 
 
     def _load_checkpoint(self, checkpoint_name='best_ckpt.pt'):
+
+        print(self.checkpoint_dir)
 
         if os.path.exists(os.path.join(self.checkpoint_dir, checkpoint_name)):
             self.logger.write('loading last checkpoint...\n')
@@ -106,12 +108,15 @@ class CDEvaluator():
 
         m = len(self.dataloader)
 
-        if np.mod(self.batch_id, 100) == 1:
+        # TODO: CHANGED == 1 TO == 0
+        #if np.mod(self.batch_id, 100) == 1:
+        if np.mod(self.batch_id, 100) == 0:
             message = 'Is_training: %s. [%d,%d],  running_mf1: %.5f\n' %\
                       (self.is_training, self.batch_id, m, running_acc)
             self.logger.write(message)
 
-        if np.mod(self.batch_id, 100) == 1:
+        #if np.mod(self.batch_id, 100) == 1:
+        if np.mod(self.batch_id, 100) == 0:
             vis_input = utils.make_numpy_grid(de_norm(self.batch['A']))
             vis_input2 = utils.make_numpy_grid(de_norm(self.batch['B']))
 

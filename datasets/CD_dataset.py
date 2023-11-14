@@ -58,10 +58,11 @@ class ImageDataset(data.Dataset):
         self.root_dir = root_dir
         self.img_size = img_size
         self.split = split  # train | train_aug | val
-        # self.list_path = self.root_dir + '/' + LIST_FOLDER_NAME + '/' + self.list + '.txt'
-        self.list_path = os.path.join(self.root_dir, LIST_FOLDER_NAME, self.split+'.txt')
+        #self.list_path = self.root_dir + '/' + LIST_FOLDER_NAME + '/' + self.split + '.txt'
+        #self.list_path = self.root_dir + LIST_FOLDER_NAME + '/' + self.split + '.txt'
+        #self.list_path = os.path.join(self.root_dir, LIST_FOLDER_NAME, self.split+'.txt')
+        self.list_path = './samples/list/train.txt' #TODO: CHANGE HARD CODING
         self.img_name_list = load_img_name_list(self.list_path)
-
         self.A_size = len(self.img_name_list)  # get the size of dataset A
         self.to_tensor = to_tensor
         if is_train:

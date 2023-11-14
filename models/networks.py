@@ -28,12 +28,12 @@ def get_scheduler(optimizer, args):
     For other schedulers (step, plateau, and cosine), we use the default PyTorch schedulers.
     See https://pytorch.org/docs/stable/optim.html for more details.
     """
-    if args.lr_policy == 'linear':
+    if args.lr_policy.strip() == 'linear':
         def lambda_rule(epoch):
             lr_l = 1.0 - epoch / float(args.max_epochs + 1)
             return lr_l
         scheduler = lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda_rule)
-    elif args.lr_policy == 'step':
+    elif args.lr_policy.strip() == 'step':
         step_size = args.max_epochs//3
         # args.lr_decay_iters
         scheduler = lr_scheduler.StepLR(optimizer, step_size=step_size, gamma=0.1)
@@ -131,7 +131,7 @@ def define_G(args, init_type='normal', init_gain=0.02, gpu_ids=[]):
         net = BASE_Transformer(input_nc=3, output_nc=2, token_len=4, resnet_stages_num=4,
                              with_pos='learned')
 
-    elif args.net_G == 'base_transformer_pos_s4_dd8':
+    elif args.net_G.strip() == 'base_transformer_pos_s4_dd8':
         net = BASE_Transformer(input_nc=3, output_nc=2, token_len=4, resnet_stages_num=4,
                              with_pos='learned', enc_depth=1, dec_depth=8)
 

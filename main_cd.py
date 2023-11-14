@@ -62,7 +62,7 @@ if __name__ == '__main__':
     parser.add_argument('--lr_decay_iters', default=100, type=int)
 
     args = parser.parse_args()
-    utils.get_device(args)
+    #utils.get_device(args)
     print(args.gpu_ids)
 
     #  checkpoints dir

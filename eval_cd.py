@@ -36,7 +36,7 @@ def main():
     parser.add_argument('--checkpoint_name', default='best_ckpt.pt', type=str)
 
     args = parser.parse_args()
-    utils.get_device(args)
+    #utils.get_device(args)
     print(args.gpu_ids)
 
     #  checkpoints dir
@@ -56,4 +56,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
